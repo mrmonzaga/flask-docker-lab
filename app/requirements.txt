@@ -3,3 +3,5 @@ pymongo
 flask-cors
 werkzeug
 flask-jwt-extended
+dnspython
+pymongo[srv]
