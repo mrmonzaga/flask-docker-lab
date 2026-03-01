@@ -4,11 +4,11 @@ from bson import ObjectId
 
 def init_db():
     uri = os.environ.get('MONGO_URI')
-    client = MongoClient(uri)
+    client = MongoClient(uri, tls=True, tlsAllowInvalidCertificates=True)
     return client["FlaskAppDocker"]
 
 def get_items(db):
-    return [ {"_id": str(doc['_id']), "name": doc['name']} for doc in db.items.find() ]
+    return [{"_id": str(doc['_id']), "name": doc['name']} for doc in db.items.find()]
 
 def add_item(db, data):
     result = db.items.insert_one({"name": data['name']})
